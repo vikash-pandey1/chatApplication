@@ -1,0 +1,62 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+env/
+venv/
+*.egg-info/
+*.egg
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# Build directories
+build/
+dist/
+
+# Compiled code
+*.o
+*.so
+*.a
+*.out
+
+# Logs
+*.log
+
+# Databases
+*.sql
+*.sqlite
+
+# IDE and Editor files
+*.iml
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+.metadata/
+
+# Environment variables
+.env
+
+# Temporary files
+*.tmp
+*.temp
+
+# Other
+coverage/
+.cache/
+.pytest_cache/
