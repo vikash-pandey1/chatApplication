@@ -27,12 +27,14 @@ function Signup() {
           withCredentials: true,
         }
       );
+      console.log(user)
       if (res.data.success) {
         navigate("/login");
         toast.success(res.data.message);
-
       }
     } catch (error) {
+      toast.error(error.response.data.message)
+
       console.log(error);
     }
     setUser({
@@ -110,7 +112,6 @@ function Signup() {
                   type="checkbox"
                   checked={user.gender === "male"}
                   onChange={() => handleCheckbox("male")}
-                  defaultChecked
                   className="checkbox mx-2"
                 />
               </div>
@@ -121,7 +122,6 @@ function Signup() {
                   type="checkbox"
                   checked={user.gender === "female"}
                   onChange={() => handleCheckbox("female")}
-                  defaultChecked
                   className="checkbox mx-2"
                 />
               </div>

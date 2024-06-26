@@ -1,22 +1,43 @@
-import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../redux/userSlice";
 
 function Login() {
-    
-    const [user, setUser] = useState({
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
-        username: "",
-        password: "",
-      });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-      const onSubmitHandler = (e) => {
-        e.preventDefault();
-        console.log(user);
-        setUser({
-        username: "",
-        password: "",
-        })
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `http://localhost:8081/api/v1/user/login`,
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      navigate("/");
+      dispatch(setAuthUser(res.data))
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
     }
+    setUser({
+      username: "",
+      password: "",
+    });
+  };
   return (
     <>
       <div className="min-w-96 mx-auto">
@@ -28,8 +49,8 @@ function Login() {
                 <span className="text-base label-text">Username</span>
               </label>
               <input
-              value={user.username}
-              onChange={(e)=>setUser({...user,username:e.target.value})}
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
                 type="text"
                 placeholder="username"
                 className="w-full input input-bordered h-10"
@@ -41,8 +62,8 @@ function Login() {
                 <span className="text-base label-text">Password</span>
               </label>
               <input
-              value={user.password}
-              onChange={(e)=>setUser({...user,password:e.target.value})}
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
                 type="text"
                 placeholder="password"
                 className="w-full input input-bordered h-10"
@@ -53,8 +74,11 @@ function Login() {
             </p>
 
             <div>
-              <button type="submit" className="btn btn-block btn-sm mt-2 border border-state-700">
-                Signup
+              <button
+                type="submit"
+                className="btn btn-block btn-sm mt-2 border border-state-700"
+              >
+                Login
               </button>
             </div>
           </form>
