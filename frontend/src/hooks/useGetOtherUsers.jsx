@@ -10,7 +10,6 @@ function useGetOtherUsers() {
         axios.defaults.withCredentials = true;
         const res = await axios.get(`http://localhost:8081/api/v1/user/`);
         dispatch(setOtherUsers(res.data));
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
