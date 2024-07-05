@@ -3,11 +3,13 @@ import { IoSend } from "react-icons/io5";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/messageSlice";
+
 function SendInput() {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const { selectedUser } = useSelector((store) => store.user);
   const { messages } = useSelector((store) => store.message);
+  
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
