@@ -4,17 +4,16 @@ const messageModel = new mongoose.Schema({
     senderId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
-        require:true
+        required:true
     },
     receiverId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
-        require:true
+        required:true
     },
     message:{
         type:String,
-        require:true
+        required:true
     }
-},{timestamps:true})
-
-export const Message = mongoose.model("Message",messageModel)
+},{timestamps:true});
+export const Message = mongoose.model("Message", messageModel);
