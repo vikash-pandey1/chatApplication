@@ -1,36 +1,34 @@
-// const express = require('express');
-import express from 'express';
-import dotenv from 'dotenv';
-import connectDB from './config/database.js';
-import router from './routes/userRoute.js';
-import messageRoute from './routes/messageRoute.js'
-import cookieParser from 'cookie-parser';
-import cors from 'cors'
+// const express = require('express')// method-1
+import express from "express"; // method-2
+import dotenv from "dotenv";
+import connectDB from "./config/database.js";
+import userRoute from "./routes/userRoute.js";
+import messageRoute from "./routes/messageRoute.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import { app, server } from "./socket/socket.js";
 
-dotenv.config({})
-const port = process.env.PORT || 8082;
+dotenv.config({});
+const PORT = process.env.PORT || 8082;
 
-const app = express();
-
-//middleware
-app.use(express.urlencoded({extended:true}));
+// middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 const corsOption = {
-    origin:'http://localhost:5173',
-    credentials:true
+    origin: 'http://localhost:5173',
+    credentials: true
 };
 app.use(cors(corsOption));
 
-app.get('/',(req,res)=>{
-    res.send('welcome to backend')
-})
 
-//routes
-app.use("/api/v1/user",router)
-app.use("/api/v1/message",messageRoute)
-// http://localhost:8081/api/v1/user/register
-app.listen(port,()=>{
+// routes
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/message", messageRoute);
+
+
+server.listen(PORT, () => {
     connectDB();
-    console.log(`port is  listening on ${port} `)
-})
+    console.log(`Server listen at prot ${PORT}`);
+});
+
