@@ -53,7 +53,7 @@ function Signup() {
           <form onSubmit={onSubmitHandler} action="">
             <div>
               <label className="label p-2">
-                <span className="text-base label-text">Full Name</span>
+                <span className="text-base label-text">Full Name*</span>
               </label>
               <input
                 value={user.fullName}
@@ -79,7 +79,7 @@ function Signup() {
 
             <div>
               <label className="label p-2">
-                <span className="text-base label-text">Password</span>
+                <span className="text-base label-text">Password*</span>
               </label>
               <input
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
