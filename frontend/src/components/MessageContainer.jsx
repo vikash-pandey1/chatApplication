@@ -32,7 +32,7 @@ const MessageContainer = () => {
           <SendInput />
         </div>
       ) : (
-        <div className="md:min-w-[550px] flex flex-col justify-center items-center">
+        <div className="md:min-w-[550px] flex flex-col bg-slate-700 justify-center items-center">
           <h1 className="text-4xl text-white font-bold">
             Hi,{authUser?.fullName}{" "}
           </h1>
