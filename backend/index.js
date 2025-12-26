@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOption = {
-    origin: 'http://localhost:5173',
+    origin: 'https://chatapplication-xl08.onrender.com',
     credentials: true
 };
 app.use(cors(corsOption));
@@ -37,7 +37,6 @@ app.get('*',(_,res)=>{
 
 server.listen(PORT, () => {
     connectDB();
-    console.log(process.env.MONGO_URI);
     console.log(`Server listen at port ${PORT}`);
 });
 

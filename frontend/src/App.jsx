@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     if (authUser) {
-      const socketio = io("http://localhost:8081", {
+      const socketio = io("https://chatapplication-xl08.onrender.com", {
         query: {
           userId: authUser._id,
         },
